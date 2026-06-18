@@ -3,12 +3,90 @@
  */
 package org.example;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 class AppTest {
-    @Test void appHasAGreeting() {
-        App classUnderTest = new App();
-        assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+
+    @Test
+    void add_shouldReturnSum() {
+        assertEquals(5, App.add(2, 3));
+        assertEquals(-1, App.add(2, -3));
+    }
+
+    @Test
+    void isPrime_variousCases() {
+        assertFalse(App.isPrime(0));
+        assertFalse(App.isPrime(1));
+        assertTrue(App.isPrime(2));
+        assertTrue(App.isPrime(13));
+        assertFalse(App.isPrime(15));
+    }
+
+    @Test
+    void reverse_emptyAndNormal() {
+        assertEquals("", App.reverse(""));
+        assertEquals("cba", App.reverse("abc"));
+    }
+
+    @Test
+    void factorial_positiveAndNegative() {
+        assertEquals(1, App.factorial(0));
+        assertEquals(120, App.factorial(5));
+        assertThrows(IllegalArgumentException.class, () -> App.factorial(-3));
+    }
+
+    @Test
+    void isPalindrome_ignoresPunctuationAndCase() {
+        assertTrue(App.isPalindrome("A man, a plan, a canal: Panama"));
+        assertFalse(App.isPalindrome("Hello"));
+    }
+
+    @Test
+    void fibonacciUpTo_returnsSequenceAndHandlesNegative() {
+        List<Integer> expected = Arrays.asList(0, 1, 1, 2, 3, 5, 8);
+        assertEquals(expected, App.fibonacciUpTo(8));
+        assertThrows(IllegalArgumentException.class, () -> App.fibonacciUpTo(-1));
+    }
+
+    @Test
+    void charFrequency_countsCharacters() {
+        Map<Character, Integer> freq = App.charFrequency("aabBc");
+        assertEquals(2, freq.get('a'));
+        assertEquals(1, freq.get('B'));
+        assertEquals(1, freq.get('c'));
+    }
+
+    @Test
+    void isAnagram_basicCases() {
+        assertTrue(App.isAnagram("listen", "silent"));
+        assertTrue(App.isAnagram("Dormitory", "Dirty room"));
+        assertFalse(App.isAnagram("hello", "bello"));
+    }
+
+    @Test
+    void average_nonEmptyAndEmptyArray() {
+        assertEquals(2.5, App.average(new int[]{2, 3}), 1e-9);
+        assertThrows(IllegalArgumentException.class, () -> App.average(new int[]{}));
+    }
+
+    @Test
+    void filterEvens_filtersCorrectly() {
+        List<Integer> input = Arrays.asList(1, 2, 3, 4, 5, 6);
+        List<Integer> expected = Arrays.asList(2, 4, 6);
+        assertEquals(expected, App.filterEvens(input));
+    }
+
+    @Test
+    void mostCommonWord_findsTopWord() {
+        String text = "Hello world hello HELLO hi";
+        assertEquals("hello", App.mostCommonWord(text));
     }
 }
