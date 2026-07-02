@@ -4,11 +4,10 @@
 הפרויקט מכיל את המחלקה `org.example.App` (אוסף מתודות עזר) ואת קובץ הבדיקות `org.example.AppTest`
 שמכסה את כל המתודות בעזרת JUnit 5.
 
-## חברי הצוות – `ori_and_avi`
-| שם | תפקיד |
-|---|---|
-| אורי אוחיון (Ori Ohayon) | ראש צוות |
-| אבי כליפה (Avy Kalifa) | חבר צוות |
+## Team Members
+* **Ori Ohayon**
+* **Avy Kalifa**
+* **Ido David**
 
 ---
 
